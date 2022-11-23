@@ -25,4 +25,22 @@ export class CervejaService {
         cerveja.nome.toLocaleLowerCase() === nome.toLocaleLowerCase(),
     );
   }
+
+  public async buscaPaginadaDeCervejas(page, size) {
+    const initialIndex = page * size;
+    console.log('page', page);
+    console.log('inicial', initialIndex);
+    const finalIndex = initialIndex + parseInt(size);
+    console.log('final', finalIndex);
+    const cervejas = await this.database.getCervejas();
+    if (cervejas.length > initialIndex) {
+      if (cervejas.length > finalIndex) {
+        return cervejas.slice(initialIndex, finalIndex);
+      } else {
+        return cervejas.slice(initialIndex, cervejas.length);
+      }
+    } else {
+      return [];
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Get, Injectable, Query } from '@nestjs/common';
 import { writeFile, readFile } from 'fs/promises';
 import { Cerveja } from '../cerveja/cerveja.entity';
 
